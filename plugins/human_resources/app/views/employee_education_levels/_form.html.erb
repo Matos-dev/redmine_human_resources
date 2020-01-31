@@ -1,0 +1,9 @@
+<div class="box tabular" id="employee_template_data">
+  <div class="splitcontentleft">
+    <p><%= f.text_field :name, required: true %></p>
+    <p><%= f.text_field :alias, required: true %></p>
+  </div>
+  <p><%= f.text_area :description, cols: 60, rows: 10, class: 'wiki-edit' %><%= wikitoolbar_for 'employee_template_category_description' %></p>
+</div>
+
+

@@ -1,0 +1,8 @@
+<%= error_messages_for @disease %>
+
+<div id="main_o" class="box tabular">
+  <p>
+    <%= f.text_field :name, required: true %>
+  </p>
+ <p><%= f.text_area :description, :cols => 60, :rows => 10, class:  'wiki-edit' %>
+</div>

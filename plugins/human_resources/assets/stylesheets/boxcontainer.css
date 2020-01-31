@@ -1,0 +1,35 @@
+/* ISOTOPE
+================================================== */
+.isotope-item { z-index: 2 }
+.isotope-hidden.isotope-item { pointer-events: none; z-index: 1; }
+.isotope, .isotope .isotope-item { /* change duration value to whatever you like */ -webkit-transition-duration: 0.8s; -moz-transition-duration: 0.8s; transition-duration: 0.8s; }
+.isotope { -webkit-transition-property: height, width; -moz-transition-property: height, width; transition-property: height, width; }
+.isotope .isotope-item { -webkit-transition-property: -webkit-transform, opacity; -moz-transition-property: -moz-transform, opacity; transition-property: transform, opacity; }
+.boxtwocolumns { width: 50%; padding-left: 10px; padding-right: 10px; margin-bottom: 20px; height: 350px; }
+.boxthreecolumns { width: 33.33%; padding-left: 10px; padding-right: 10px; margin-bottom: 20px; }
+.boxfourcolumns { float: left; padding-left: 10px; padding-right: 10px; width: 24.99%; display: inline-block; margin-bottom: 20px; position: relative; z-index: 0; }
+.boxfivecolumns { width: 20%; padding-left: 10px; padding-right: 10px; margin-bottom: 20px; }
+.boxcontainer { background: #fff; font-size: 12px; text-align: center; border: 1px solid #eee; border-bottom: double #ddd; }
+.boxcontainer2col { height: 350px }
+.mosaicover2col { height: 260px }
+.mosaicover4col { height: 180px }
+.mosaicover5col { height: 140px }
+.boxcontainer p { margin-bottom: 10px }
+.boxcontainer h1 { font-size: 13px; line-height: 1; font-family: OpenSansRegular; font-weight: bold; padding-left: 10px; padding-right: 10px; }
+.boxcontainer h1 a { padding-bottom: 10px; border-bottom: 1px solid #eee; display: block; color: #222; }
+.box-selected { background: #444; color: #fff !Important; box-shadow: 2px 3px 5px #999 !Important; }
+#content { width: 100%; margin-top: 10px; z-index: 0; }
+#nav ul li a { float: left; margin-right: 15px; padding: 6px 10px; color: #333; border-radius: 3px; box-shadow: 1px 2px 5px #ccc; }
+/* --------------------------------------- Clearfixes ------------------------------------------ */
+.row:before, .row:after, .clearfix:before, .clearfix:after { content: ''; display: table; }
+.row:after, .clearfix:after { clear: both }
+.row, .clearfix { zoom: 1 }
+
+.space-top { margin-top: 20px }
+.space-bot { margin-bottom: 20px }
+
+ul, ol { margin-bottom: 8px }
+ul li ul, ul li ol { margin-bottom: 0px }
+ol { margin-left: 10px }
+ol li ul, ol li ol { margin-left: 10px; margin-bottom: 0; }
+ul { list-style: none }

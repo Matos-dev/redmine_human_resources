@@ -1,0 +1,47 @@
+<!-- Bootstrap core CSS -->
+<%= stylesheet_link_tag '../dist/css/scoped-twbs', plugin: 'human_resources' %>
+<%= stylesheet_link_tag '../font-awesome/css/font-awesome.min', plugin: 'human_resources' %>
+<%= stylesheet_link_tag 'responsive', plugin: 'human_resources' %>
+
+<%= render(partial: 'headers/header_departments', locals: {tab: 'departments'}) %>
+
+<%#= render partial:  'help/plugin_help' %>
+<div class="contextual">
+  <% if User.current.allowed_to?({controller: 'departments', action: 'new'}, nil, :global => true) %>
+    <%= link_to l(:label_department_new), {controller: 'departments', action: 'new'}, class: 'icon icon-add' %>
+  <% end %>
+</div>
+<h2><%= l(:label_departments) %></h2>
+
+<h4><%#= l(:search_pattern_heading_label) %></h4>
+
+<% if @departments.any? %>
+  <div class="autoscroll">
+    <table class="list">
+      <thead>
+      <tr>
+        <th><%= l(:label_department) %></th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <% department_tree(@departments) do |department, level| %>
+        <tr class="<%= cycle("odd", "even") %> <%= department.css_classes %> <%= level > 0 ? "idnt idnt-#{level}" : nil %>">
+          <td class="name"><span><%= link_to department.name, department_path(department) %></span></td>
+          <td class="buttons">
+            <% if User.current.allowed_to?({controller: 'departments', action: 'edit'}, nil, :global => true) %>
+              <%= link_to(l(:button_edit), edit_department_path(department), :class => 'icon icon-edit') %>
+            <% end %>
+            <% if User.current.allowed_to?({controller: 'departments', action: 'destroy'}, nil, :global => true) %>
+              <%= link_to(l(:button_delete), department_path(department, :from => params[:controller]), :method => :delete, :class => 'icon icon-del', :data => {:confirm => (l(:will_be_deleted_message)).sub(/\(s\)/, department.name).to_s}) %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+<% else %>
+  <p class="nodata"><%= l(:label_no_data) %></p>
+<% end %>
+

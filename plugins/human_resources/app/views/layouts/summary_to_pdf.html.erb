@@ -1,0 +1,87 @@
+<!DOCTYPE>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style type="text/css">
+
+    table.list {
+      border: 1px solid #C1DAD7;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    table.list th {
+      text-align: center;
+      background-color: #EEEEEE;
+      padding: 8px;
+      white-space: nowrap;
+      font-weight: bold;
+    }
+
+    th {
+      color: #000;
+      padding: 0 12px 0 20px;
+      border-right: 1px solid #C1DAD7;
+      border-bottom: 1px solid #C1DAD7;
+      border-top: 1px solid #C1DAD7;
+    }
+
+    td {
+      border: 1px solid #C1DAD7;
+      background: #fff;
+      padding: 0 12px 0 20px;
+      color: #333;
+    }
+
+  </style>
+
+  <%= csrf_meta_tag %>
+  <title> <%= l(:label_summary_compliance) %> </title>
+  <%= favicon_link_tag 'favicon.ico' %>
+</head>
+<body>
+<h2><%= l(:label_summary_compliance) %></h2>
+
+<table class="list">
+  <label> <%= l(:label_employee_summary, last_month: (l :month_names, :scope => :date)[Time.now.last_month.month], year: Time.now.last_month.year) %></label>
+  <br>
+  <br>
+  <caption><%= l(:label_quantitative_summary) %></caption>
+  <thead>
+  <tr class="customize">
+    <th><%= l(:total_issues_planned_label) %></th>
+    <th><%= l(:issues_successfully_label) %></th>
+    <th><%= l(:issues_unsuccessfully_label) %></th>
+    <th><%= l(:issues_modified_label) %></th>
+  </tr>
+  </thead>
+  <tr class="customize">
+    <td><%= @last_month_issues["planned"] %></td>
+    <td><%= @last_month_issues["successfully"] %></td>
+    <td><%= @last_month_issues["unsuccessfully"] %></td>
+    <td><%= @last_month_issues["modified"] %></td>
+  </tr>
+</table>
+<br>
+<br>
+<table class="list">
+  <thead>
+  <tr>
+    <th class="nostyle" style="text-align: right"><%= l(:issues_unsuccessfully_or_additionals_label) %></th>
+  </tr>
+  <tr>
+    <th style="width: 30%"><%= l(:issues_unsuccessfully_label) %></th>
+    <th style="width: 50%"><%= l(:issues_unsuccessfully_causes_label) %></th>
+  </tr>
+  </thead>
+  <% @issues_unsuccessfully.each do |issue| %>
+    <tr>
+      <td> <%= issue.subject %></td>
+      <td> <%= issue.description %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p style="text-align: right"> <%= l(:workplan_responsible_label) + User.current.name %></p>
+</body>
+</html>

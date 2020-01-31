@@ -1,0 +1,32 @@
+<h3 class="title"><%= l(:label_employee_educational) %></h3>
+
+<% if params[:action] == "edit_educational_data" || params[:action] == "update_educational_data" %>
+  <h4><%= l(:label_employee) + ": " + @employee.name %><br/></h4>
+
+  <%= labelled_form_for :employee_educational, @educational_data,
+                        :url => {action: 'update_educational_data',
+                                 id: params[:id],
+                                 edu_id: @educational_data.id},
+                        :remote => true, method: :patch do |f| %>
+
+    <%= render partial:  'educational_form', :locals => {:f => f} %>
+    <p class="buttons">
+      <%= submit_tag l(:button_edit), name:  nil %>
+      <%= submit_tag l(:button_cancel), name:  nil, :onclick => "hideModal(this);", :type => 'button' %>
+    </p>
+  <% end %>
+<% else %>
+  <h4><%= l(:label_employee) + ": " + @employee.name %><br/></h4>
+  <%= labelled_form_for :employee_educational, @educational_data,
+                        :url => {action:  "create_educational_data"},
+                        :remote => true do |f| %>
+
+    <%= render partial:  'educational_form', :locals => {:f => f} %>
+    <p class="buttons">
+      <%= submit_tag l(:button_create), name:  nil %>
+      <%= submit_tag l(:button_cancel), name:  nil,
+                     :onclick => "hideModal(this);",
+                     :type => 'button' %>
+    </p>
+  <% end %>
+<% end %>

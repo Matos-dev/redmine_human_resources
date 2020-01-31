@@ -1,0 +1,13 @@
+<h3 class="title"><%= l(:label_template_by_department) %></h3>
+
+<h4><%= l(:label_department) + ": " + @department.name %><br/></h4>
+
+<%= form_tag({action: 'update_template_by_department'}, method: :post, remote: true) do %>
+  <div class="autoscroll" style="height: 300px">
+    <%= render partial: 'template_by_department_form' %>
+  </div>
+  <p class="buttons">
+    <%= submit_tag l(:button_edit), name: nil %>
+    <%= submit_tag l(:button_cancel), name: nil, :onclick => "hideModal(this);", :type => 'button' %>
+  </p>
+<% end %>

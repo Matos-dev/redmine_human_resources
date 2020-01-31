@@ -1,0 +1,111 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <%= plugin_wicked_pdf_stylesheet_link_tag '../dist/css/scoped-twbs', plugin: 'human_resources' %>
+  <%= plugin_wicked_pdf_stylesheet_link_tag '../font-awesome/css/font-awesome.min', plugin: 'human_resources' %>
+  <%= plugin_wicked_pdf_stylesheet_link_tag 'responsive', plugin: 'human_resources' %>
+</head>
+<body>
+<div class="twbs">
+  <h1 class="text-center" style="font-weight: bold"><%= l(:label_employee_file) %></h1>
+  <h3 class="text-center">Report</h3>
+  <h2 style="font-weight: bold"><%= l(:label_employee_general_information) %></h2>
+  <fieldset style="border-top: 2px solid #0F192A; border-bottom: 2px solid #0F192A">
+    <div class="card-box" style="display: block; margin-left: 50px;">
+      <h4><span style="font-weight: bold"> <%= l(:field_name) %>:</span> <%= employee.name %></h4>
+      <h4><span style="font-weight: bold"> <%= l(:field_ni) %>:</span> <%= employee.ni %></h4>
+      <h4><span style="font-weight: bold"> <%= l(:field_age) %>:</span> <%= employee_age(employee.birthday) %></h4>
+      <h4><span style="font-weight: bold"> <%= l(:field_gender) %>:</span> <%= employee.gender %></h4>
+      <h4><span style="font-weight: bold"> <%= l(:field_race) %>:</span> <%= employee.race %></h4>
+      <h4><span style="font-weight: bold"> <%= l(:field_telephone) %>
+        :</span> <%= !employee.telephone.present? ? l(:value_not_identify) : employee.telephone %></h4>
+      <h4><span style="font-weight: bold"> <%= l(:field_email) %>
+        :</span> <%= !employee.email.present? ? l(:value_not_identify) : employee.email %></h4>
+      <h4><span style="font-weight: bold"> <%= l(:field_salary_card) %>
+        :</span> <%= !employee.salary_card.present? ? l(:value_not_identify) : employee.salary_card %></h4>
+      <h4><span style="font-weight: bold"> <%= l(:field_address) %>
+        :</span> <%= !employee.address.present? ? l(:value_not_identify) : employee.address %></h4>
+      <h4><span style="font-weight: bold"> <%= l(:field_employee_template) %>
+        :</span> <%= employee.employee_template.name %></h4>
+      <h4><span style="font-weight: bold"> <%= l(:field_department) %>:</span> <%= employee.department.name %></h4>
+      <h4><span style="font-weight: bold"> <%= l(:field_job_init_date) %>
+        :</span> <%= format_date(employee.job_init_date) %></h4>
+    </div>
+  </fieldset>
+  <h2 style="font-weight: bold"><%= l(:label_work_experience) %></h2>
+  <fieldset style="border-top: 2px solid #0F192A;">
+    <div class="card-box" style="display: block; margin-left: 50px">
+      <% if @employee.experiences.any? %>
+        <% @employee.experiences.each do |exp| %>
+          <div style="border-bottom: 2px solid #ddd">
+            <h4><span style="font-weight: bold"><%= l(:field_previous_company_name) %>
+              :</span> <%= exp.previous_company_name %></h4>
+            <h4><span style="font-weight: bold"> <%= l(:field_job_title) %>:</span> <%= exp.job_title %></h4>
+            <h4><span style="font-weight: bold"> <%= l(:field_from_date) %>:</span> <%= format_date(exp.from_date) %> -
+              <span style="font-weight: bold"><%= l(:field_to_date) %>:</span>
+              <%= format_date(exp.to_date) %></h4>
+            <h4><span style="font-weight: bold"> <%= l(:field_description) %>:</span> <%= exp.description %></h4>
+          </div>
+        <% end %>
+      <% else %>
+        <h4><%= l(:label_no_data) %></h4>
+      <% end %>
+    </div>
+  </fieldset>
+  <h2 style="font-weight: bold"><%= l(:label_training) %></h2>
+  <fieldset style="border-top: 2px solid #0F192A;">
+    <div class="card-box" style="display: block; margin-left: 50px">
+      <% if @employee.training.any? %>
+        <% @employee.training.each do |training| %>
+          <div style="border-bottom: 2px solid #ddd">
+            <h4><span style="font-weight: bold"> <%= l(:field_training_date) %>:</span> <%= training.training_date %></h4>
+            <h4><span style="font-weight: bold"> <%= l(:field_description) %>:</span> <%= training.description %></h4>
+          </div>
+        <% end %>
+      <% else %>
+        <h4><%= l(:label_no_data) %></h4>
+      <% end %>
+    </div>
+  </fieldset>
+  <h2 style="font-weight: bold"><%= l(:label_employee_educational) %></h2>
+  <fieldset style="border-top: 2px solid #0F192A;">
+    <div class="card-box" style="display: block; margin-left: 50px">
+      <% if @employee.educationals.any? %>
+        <% @employee.educationals.each do |educ| %>
+          <div style="border-bottom: 2px solid #ddd">
+            <h4><span style="font-weight: bold"> <%= l(:field_institution) %>:</span> <%= educ.institution %></h4>
+            <h4><span style="font-weight: bold"> <%= l(:field_speciality) %>:</span> <%= educ.speciality %></h4>
+            <h4><span style="font-weight: bold"> <%= l(:field_start_date) %>:</span> <%= format_date(educ.start_date) %>
+              -
+              <span style="font-weight: bold"><%= l(:field_complete_date) %>:</span>
+              <%= format_date(educ.complete_date) %></h4>
+            <h4><span style="font-weight: bold"> <%= l(:field_education_level) %>
+              :</span> <%= educ.employee_education_level.name %></h4>
+          </div>
+        <% end %>
+      <% else %>
+        <h4><%= l(:label_no_data) %></h4>
+      <% end %>
+    </div>
+  </fieldset>
+  <h2 style="font-weight: bold"><%= l(:label_diseases) %></h2>
+  <fieldset style="border-top: 2px solid #0F192A;">
+    <div class="card-box" style="display: block; margin-left: 50px">
+      <% if @employee.diseases.any? %>
+        <% @employee.diseases.each do |ds| %>
+          <div style="border-bottom: 2px solid #ddd">
+            <h4><span style="font-weight: bold"> <%= l(:label_disease) %>:</span> <%= ds.name %></h4>
+            <h4><span style="font-weight: bold"> <%= l(:field_description) %>:</span> <%= ds.description %></h4>
+          </div>
+        <% end %>
+      <% else %>
+        <h4><%= l(:label_no_data) %></h4>
+      <% end %>
+    </div>
+  </fieldset>
+  <div style="clear:both;"></div>
+</div>
+</body>
+</html>
+
+

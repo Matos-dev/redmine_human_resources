@@ -1,0 +1,57 @@
+
+  <fieldset class="">
+  <legend><%= l(:label_training) %>
+    <% if User.current.allowed_to?({controller: 'employees', action: 'edit'}, nil, :global => true) %>
+    <%= link_to(image_tag('add.png', :style => 'vertical-align: middle;'),
+                {controller: 'employee_trainings', action:  'new_training'},
+                :remote => true, :method => 'get', :tabindex => 200, style: "float: right;") %>
+      <% end %>
+  </legend>
+  <div class="card-box" style="display: block;">
+    <div>
+      <div class="lab-item-panel">
+      </div>
+    </div>
+    <div class="experience-box">
+      <ul class="experience-list">
+        <% if @employee.training.any? %>
+          <% @employee.training.each do |sk| %>
+            <li>
+              <div class="experience-user">
+                <div class="before-circle"></div>
+              </div>
+              <div class="experience-content">
+                <div class="timeline-content">
+                 <h5><span class="name"><%= l(:field_training_date) %>: </span><span class="text-muted"><%= sk.training_date.present? ? sk.train_date : l(:value_not_identify) %></span></h5>
+                </div>
+              </div>
+              <div class="experience-content">
+                <div class="timeline-content">
+                 <h5><span class="name"><%= l(:field_description) %>: </span><span class="text-muted"><%= sk.description %></span></h5>
+                </div>
+              </div>
+              <% if User.current.allowed_to?({controller: 'employees', action: 'edit'}, nil, :global => true) %>
+              <div class="info invoice-info" style="text-align: right;">
+                <a class="btn btn-sm btn-default"
+                   href="/employee/<%= params[:id] %>/edit_training/<%= sk.id %>/" role="button"
+                   title="<%= l(:update_button_label) %>" data-remote="true">
+                  <span class="glyphicon glyphicon-edit"></span>
+                </a>
+               <a class="btn btn-sm btn-default"
+                   href="/employee/<%= params[:id] %>/destroy_training/<%= sk.id %>" data-method="delete"
+                   role="button" data-confirm="<%= (l(:will_be_deleted_message)).to_s %>"
+                   title="<%= l(:delete_button_label) %>">
+                  <span class="glyphicon glyphicon-trash"></span>
+                </a>
+              </div>
+                <% end %>
+            </li>
+          <% end %>
+        <% else %>
+          <p class="nodata"><%= l(:label_no_data) %></p>
+        <% end %>
+      </ul>
+    </div>
+
+  </div>
+</fieldset>

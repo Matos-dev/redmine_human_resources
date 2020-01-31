@@ -1,0 +1,19 @@
+<%= stylesheet_link_tag '../dist/css/scoped-twbs', plugin: 'human_resources' %>
+
+<%= error_messages_for @temp_in_dept %>
+<div class="twbs">
+<div id="main_o" class="box tabular">
+  <% if @employee_templates.blank? %>
+  <%= l(:message_not_exist_templates)%>
+  <% else %>
+    <% @employee_templates.each do |et| %>
+      <div class="col-md-12">
+        <div class="col-md-9" style="margin-top: 10px;"><strong><%= et.name %>:</strong></div>
+        <div class="col-md-3" style="margin-top: 10px;"><%= number_field_tag('templates_values[[' + et.id.to_s + ']]',
+                                                                             count_templates_in_department(params[:id], et.id) ) %></div>
+      </div>
+    <% end %>
+  <% end %>
+  <div style="clear:both;"></div>
+</div>
+</div>

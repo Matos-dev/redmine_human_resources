@@ -1,0 +1,128 @@
+---
+employee_salary_scale_001:
+ id: 1
+ scale: I
+
+employee_salary_scale_002:
+ id: 2
+ scale: II
+
+employee_salary_scale_003:
+ id: 3
+ scale: III
+
+employee_salary_scale_004:
+ id: 4
+ scale: IV
+
+employee_salary_scale_005:
+ id: 5
+ scale: V
+
+employee_salary_scale_006:
+ id: 6
+ scale: VI
+
+employee_salary_scale_007:
+ id: 7
+ scale: VII
+
+employee_salary_scale_008:
+ id: 8
+ scale: VIII
+
+employee_salary_scale_009:
+ id: 9
+ scale: IX
+
+employee_salary_scale_010:
+ id: 10
+ scale: X
+
+employee_salary_scale_011:
+ id: 11
+ scale: XI
+
+employee_salary_scale_012:
+ id: 12
+ scale: XII
+
+employee_salary_scale_013:
+ id: 13
+ scale: XIII
+
+employee_salary_scale_014:
+ id: 14
+ scale: XIV
+
+employee_salary_scale_015:
+ id: 15
+ scale: XV
+
+employee_salary_scale_016:
+ id: 16
+ scale: XVI
+
+employee_salary_scale_017:
+ id: 17
+ scale: XVII
+
+employee_salary_scale_018:
+ id: 18
+ scale: XVIII
+
+employee_salary_scale_019:
+ id: 19
+ scale: XIX
+
+employee_salary_scale_020:
+ id: 20
+ scale: XX
+
+employee_salary_scale_021:
+ id: 21
+ scale: XXI
+
+employee_salary_scale_022:
+ id: 22
+ scale: XXII
+
+employee_salary_scale_023:
+ id: 23
+ scale: XXIII
+
+employee_salary_scale_024:
+ id: 24
+ scale: XIV
+
+employee_salary_scale_025:
+ id: 25
+ scale: XXV
+
+employee_salary_scale_026:
+ id: 26
+ scale: XXVI
+
+employee_salary_scale_027:
+ id: 27
+ scale: XXVII
+
+employee_salary_scale_028:
+ id: 28
+ scale: XXVIII
+
+employee_salary_scale_029:
+ id: 29
+ scale: XXIX
+
+employee_salary_scale_030:
+ id: 30
+ scale: XXX
+
+employee_salary_scale_031:
+ id: 31
+ scale: XXXI
+
+employee_salary_scale_032:
+ id: 32
+ scale: XXXII

@@ -1,0 +1,75 @@
+<%= stylesheet_link_tag '../dist/css/scoped-twbs', plugin: 'human_resources' %>
+<%= stylesheet_link_tag '../font-awesome/css/font-awesome.min', plugin: 'human_resources' %>
+<%= stylesheet_link_tag 'responsive', plugin: 'human_resources' %>
+<%= stylesheet_link_tag 'profile.css', plugin: 'human_resources' %>
+<%= render(partial: 'headers/header_employees', locals: {tab: 'employees'}) %>
+<% if User.current.allowed_to?({controller: 'employees', action: 'new'}, nil, global: true) %>
+  <div class="contextual">
+    <%= link_to l(:label_employee_new), {controller: 'employees', action: 'new'}, class: 'icon icon-add' %>
+  </div>
+<% end %>
+<h2><%= l(:organization_employee_submenu) %></h2>
+
+<%= form_tag({controller: 'employees', action: 'index'},
+             method: :get, id: 'query_form') do %>
+  <div id="query_form_with_buttons" class="hide-when-print">
+    <%= hidden_field_tag 'set_filter', '1' %>
+    <div id="query_form_content">
+      <fieldset id="filters" class="collapsible <%= @query.new_record? ? "" : "collapsed" %>">
+        <legend onclick="toggleFieldset(this);"><%= l(:label_filter_plural) %></legend>
+        <div style="<%= @query.new_record? ? "" : "display: none;" %>">
+          <%= render partial: 'queries/filters', :locals => {:query => @query} %>
+        </div>
+      </fieldset>
+      <fieldset id="options" class="collapsible collapsed">
+        <legend onclick="toggleFieldset(this);"><%= l(:label_options) %></legend>
+        <div style="display: none;">
+          <table>
+            <tr>
+              <td class="field"><%= l(:field_column_names) %></td>
+              <td><%= render_query_columns_selection(@query) %></td>
+            </tr>
+            <tr>
+              <td class="field"><label for='group_by'><%= l(:field_group_by) %></label></td>
+              <td><%= select_tag('group_by',
+                                 options_for_select(
+                                     [[]] + @query.groupable_columns.collect {|c| [c.caption, c.name.to_s]},
+                                     @query.group_by)
+                      ) %></td>
+            </tr>
+            <tr>
+              <td><%= l(:label_total_plural) %></td>
+              <td><%= available_totalable_columns_tags(@query) %></td>
+            </tr>
+          </table>
+        </div>
+      </fieldset>
+    </div>
+    <p class="buttons">
+      <%= link_to_function l(:button_apply), '$("#query_form").submit()', class: 'icon icon-checked' %>
+      <%= link_to l(:button_clear), {:set_filter => 1}, class: 'icon icon-reload' %>
+    </p>
+  </div>
+<% end %>
+
+<%= error_messages_for 'query' %>
+<% if @query.valid? %>
+  <% if @employees.empty? %>
+    <p class="nodata"><%= l(:label_no_data) %></p>
+  <% else %>
+    <%= render_query_totals(@query) %>
+    <%= render partial: 'list_employee', locals: {employees: @employees, query: @query} %>
+    <span class="pagination"><%= pagination_links_full @employees_pages, @employees_count %></span>
+  <% end %>
+  <% other_formats_links do |f| %>
+    <%= f.link_to_with_query_parameters 'PDF' %>
+  <% end %>
+<% end %>
+
+<% content_for :sidebar do %>
+  <%= render partial: 'head_right_panel' %>
+  <%= render partial: 'right_panel' %>
+  <%#= call_hook(:view_invoices_sidebar_bottom, :invoices => @invoices) %>
+<% end %>
+
+

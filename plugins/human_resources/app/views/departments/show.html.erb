@@ -1,0 +1,96 @@
+<!-- Bootstrap core CSS -->
+<%= stylesheet_link_tag '../dist/css/scoped-twbs', plugin: 'human_resources' %>
+<%= stylesheet_link_tag '../font-awesome/css/font-awesome.min', plugin: 'human_resources' %>
+<%= stylesheet_link_tag 'responsive', plugin: 'human_resources' %>
+
+<%= render(partial: 'headers/header_departments', locals: {:tab => 'departments'}) %>
+
+<%= render partial: 'action_menu' %>
+<h2>
+  <%= l(:label_department) %>: <%= @department.name %>
+</h2>
+
+<div class="twbs">
+  <!--general-->
+  <div class="col-md-1 item-list">
+    <div class="panel panel-info text-center lab-panel">
+      <div class="panel-heading lab-panel-heading lab-retrieve-panel-heading">
+        <h4 class="lab-retrieve-icon" title="<%= l(:general_information_label) %>">
+          <i class="fa fa-google fa-2x"></i>
+        </h4>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-11 item-list">
+    <div class="panel panel-info text-center lab-panel">
+      <div class="lab-panel-body">
+        <div class="lab-item-panel">
+          <p>
+            <strong><%= l(:field_name) %>:</strong>
+            <span><%= h(@department.name) %></span>
+          </p>
+        </div>
+        <div class="lab-item-panel">
+          <p>
+            <strong><%= l(:field_active) %>:</strong>
+            <span class="text"><%= check_box_tag "active", @department.active, @department.active == true, disabled: true %></span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-1 item-list">
+    <div class="panel panel-info text-center lab-panel">
+      <div class="panel-heading lab-panel-heading lab-retrieve-panel-heading">
+        <h4 class="lab-retrieve-icon" title="<%= l(:label_details) %>">
+          <i class="fa fa-book fa-2x"></i>
+        </h4>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-11 item-list">
+    <div class="panel panel-info text-center lab-panel">
+      <div class="lab-panel-body">
+        <div class="lab-item-panel">
+          <p>
+            <strong><%= l(:field_description) %>:</strong>
+            <span><%= (@department.description == "") ?
+                          l(:value_not_identify) : @department.description %></span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-1 item-list">
+    <div class="panel panel-info text-center lab-panel">
+      <div class="panel-heading lab-panel-heading lab-retrieve-panel-heading">
+        <h4 class="lab-retrieve-icon" title="Plantilla del Departamento">
+          <i class="fa fa-calendar-check-o fa-2x"></i>
+        </h4>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-11 item-list">
+    <div class="panel panel-info text-center lab-panel">
+      <div class="lab-panel-body">
+        <% @department.get_templates_of_department.each do |et_by_dep| %>
+          <div class="lab-item-panel">
+            <p>
+              <strong><%= et_by_dep.employee_template.name %>:</strong>
+              <span><%= et_by_dep.total_templates %></span>
+            </p>
+          </div>
+        <% end %>
+        <% if User.current.allowed_to?({controller: 'employee_template_by_department', action: 'update_template_by_department'}, nil, :global => true) %>
+          <p><%= l(:department_occupations) %> <a class="btn btn-sm btn-default"
+                                       href="/department/<%= params[:id] %>/templates/edit/" role="button"
+                                       title="<%= l(:update_button_label) %>" data-remote="true">
+            <span class="glyphicon glyphicon-edit"></span>
+          </a></p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div style="clear:both;"></div>
+</div>

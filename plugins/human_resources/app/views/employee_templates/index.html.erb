@@ -1,0 +1,136 @@
+<!-- Bootstrap core CSS -->
+<%= stylesheet_link_tag '../dist/css/scoped-twbs', plugin: 'human_resources' %>
+<%= stylesheet_link_tag '../font-awesome/css/font-awesome.min', plugin: 'human_resources' %>
+<%= stylesheet_link_tag 'responsive', plugin: 'human_resources' %>
+
+<%= render(partial: 'headers/header_departments', locals: {tab: 'employee_templates'}) %>
+
+<div class="contextual">
+  <% if User.current.allowed_to?({controller: 'employee_templates', action: 'new'}, nil, :global => true) %>
+    <%= link_to l(:label_employee_template_new), {controller: :employee_templates, action: 'new'}, class: 'icon icon-add' %>
+  <% end %>
+</div>
+<h2><%= l(:label_employee_templates) %></h2>
+<%= form_tag({controller: 'employee_templates', action: 'index'},
+             method: :get, id: 'query_form') do %>
+  <div id="query_form_with_buttons" class="hide-when-print">
+    <%= hidden_field_tag 'set_filter', '1' %>
+    <div id="query_form_content">
+      <fieldset id="filters" class="collapsible <%= @query.new_record? ? "" : "collapsed" %>">
+        <legend onclick="toggleFieldset(this);"><%= l(:label_filter_plural) %></legend>
+        <div style="<%= @query.new_record? ? "" : "display: none;" %>">
+          <%= render partial: 'queries/filters', :locals => {:query => @query} %>
+        </div>
+      </fieldset>
+    </div>
+    <p class="buttons">
+      <%= link_to_function l(:button_apply), '$("#query_form").submit()', class: 'icon icon-checked' %>
+      <%= link_to l(:button_clear), {:set_filter => 1}, class: 'icon icon-reload' %>
+    </p>
+    </div>
+
+<% if !@employee_templates.nil? && @employee_templates.size > 0 %>
+  <div class="twbs">
+    <% for employee_template in @employee_templates %>
+      <% unless employee_template.new_record? %>
+        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 item-list" id="<%= employee_template.id %>">
+          <div class="panel panel-info text-center lab-panel">
+            <div class="panel-heading lab-panel-heading">
+              <h4 class="lab-item-name">
+                <%= (link_to truncate(employee_template.name, :length => 30), employee_template_path(employee_template)) %>
+              </h4>
+            </div>
+
+            <div class="panel-body lab-large-container-panel">
+              <div class="row">
+                <div class="lab-item-panel" id="field_name">
+
+                  <p>
+                    <%= l(:field_name) %>:
+                    <%= employee_template.name %>
+                  </p>
+                </div>
+
+                <div class="lab-item-panel" id="field_mission">
+                  <p>
+                    <%= l(:field_category) %>:
+                    <span>
+                      <%= h (employee_template.employee_template_category.name) %>
+                          </span>
+                  </p>
+                </div>
+                <div class="lab-item-panel" id="field_functions">
+                  <p>
+                    <%= l(:field_salary_scale) %>:
+                    <span>
+                      <%= employee_template.employee_salary_scale.scale %>
+                          </span>
+                  </p>
+                </div>
+                <div class="lab-item-panel" id="field_functions">
+                  <p>
+                    <%= l(:field_employee_education_level_ids) %>:
+                    <span>
+                      <%= employee_template.employee_education_level.collect {|e_lv| e_lv.alias} %>
+                          </span>
+                  </p>
+                </div>
+                <div class="lab-item-panel" id="field_job_salary">
+                  <p>
+                    <%= l(:field_job_salary) %>:
+                    <span>
+                      <%= employee_template.employee_salary_scale.salary %>
+                          </span>
+                  </p>
+                </div>
+<div class="lab-item-panel" id="field_job_salary">
+                  <p>
+                    <%= l(:field_rga_template) %>:
+                    <span class="text"><%= check_box_tag "contract_type", employee_template.rga_template, employee_template.rga_template == true, disabled: true %> </span>
+                  </p>
+                </div>
+
+              </div>
+              <div style="clear:both"></div>
+            </div>
+            <ul class="list-group">
+              <li class="list-group-item" style="text-align: right">
+                <% if User.current.allowed_to?({controller: 'employee_templates', action: 'edit'}, nil, :global => true) %>
+                  <a class="btn btn-sm btn-default"
+                     href="/employee_templates/<%= employee_template.id %>/edit" role="button"
+                     title="<%= l(:update_button_label) %>">
+                    <span class="glyphicon glyphicon-edit"></span>
+                  </a>
+                <% end %>
+                <% if User.current.allowed_to?({controller: 'employee_templates', action: 'destroy'}, nil, :global => true) %>
+                  <a class="btn btn-sm btn-default"
+                     href="/employee_templates/<%= employee_template.id %>" data-method="delete" role="button" data-confirm="<%= (l(:will_be_deleted_message)).sub(/\(s\)/, employee_template.name).to_s %>"
+                     title="<%= l(:delete_button_label) %>">
+                    <span class="glyphicon glyphicon-trash"></span>
+                  </a>
+                <% end %>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+      <% end %>
+    <% end %>
+
+  </div>
+  <div style="clear:both;"></div>
+  <div>
+    <ul class="pagination">
+      <%= pagination_links_full @employee_templates_pages, @employee_templates_count %>
+      <%# other_formats_links do |f| %>
+        <%#= f.link_to_with_query_parameters 'CSV' %>
+      <%# end %>
+    </ul>
+  </div>
+<% else %>
+  <p class="nodata"><%= l(:label_no_data) %></p>
+<% end %>
+<% end %>
+
+
+

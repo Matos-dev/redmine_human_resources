@@ -1,0 +1,141 @@
+# English strings go here for Rails i18n
+en:
+  # Permissions
+  permission_view_employees_permission_label: See employees
+  permission_edit_employees_permission_label: Edit employees
+  permission_destroy_employees_permission_label: Delete employees
+  permission_deactivate_employees_permission_label: Terminate employees
+  permission_view_departments_permission_label: See departments
+  permission_edit_departments_permission_label: Edit departments
+  permission_destroy_departments_permission_label: Delete departments
+  permission_managed_department_templates_permission_label: Manage departments occupations
+  permission_view_templates_permission_label: See occupations
+  permission_edit_templates_permission_label: Edit occupations
+  permission_destroy_templates_permission_label: Delete occupations
+
+  project_module_human_resources_module_label: Human Resources Management.
+  permission_human_resources_permissions_label: Management of human resources in organization.
+
+  #Labels
+  admin_employee_template_categories_label: Human Resources
+  organization_employee_submenu: Employees
+  label_employee_new: New employee
+  label_employee_edit: Edit employee
+  label_employee_avatar: Load avatar
+  label_speciality: Specialty
+  label_employee_file: Employee File
+  label_work_experience: Work experience
+  label_employee: Employee
+  label_department: Department
+  label_departments: Departments
+  label_department_new: New Department
+  label_department_edit: Edit Department
+  label_employee_template: Occupation
+  label_employee_templates: Occupations
+  label_employee_template_new: New Occupation
+  label_employee_template_edit: Edit Occupation
+  label_gender_male: M
+  label_gender_female: F
+  label_employee_educational: Educational Information
+  label_disease: Disease
+  label_diseases: Diseases
+  label_active_employees: Actives
+  label_inactive_employees: Inactives
+  label_sumary_employees: Employees summary
+  label_womans: Woman
+  label_man: Man
+  label_salary_key: Additional payment
+  label_salary_keys: Additional payments
+  label_salary_and_aditional_pay: Salary and Additional payments
+  label_no_aditional_pay: No additional payments
+  label_training: Training
+  label_template_by_department: Manage department occupations
+  label_employee_template_categories: Template categories
+  label_employee_template_category_new: New template category
+  label_employee_template_category_edit: Edit template category
+  label_employee_education_levels: Educational levels
+  label_employee_education_level_new: New educational level
+  label_employee_education_level_edit: Edit educational level
+  label_annex_templates: occupations x departments
+  label_annex: Annex
+  label_description_annex: Departamentos/Cargos
+  label_total_of_templates: Amount of Charges
+  label_real_of_templates: Real of Charges
+  label_employee_general_information: General Information
+  label_employee_list: Employees list
+  label_employee_contract_types: Type of contracts
+  label_employee_contract_type_new: New type of contract
+  label_contract_type: Type of contract
+  label_employee_contract_type_edit: Edit type of contracts
+  label_employee_salary_scale_new: new salary scale
+  label_employee_salary_scale_edit: Edit salary scale
+  label_employee_salary_scales: Salary Scales
+  label_archive_employee: Unsubscribe employee
+  update_button_label: Edit
+  delete_button_label: Delete
+  general_information_label: General Information
+  department_occupations: Department occupations
+
+  #Fields
+  field_employee_name: Name
+  field_employee_email: Email
+  field_employee_telephone: Phone
+  field_gender: Gender
+  field_salary_card: Credit card
+  field_job_init_date: Hiring date
+  field_job_due_date: Hiring end date
+  field_avatar: avatar
+  field_from_date: From
+  field_to_date: to
+  field_previous_company_name: Company
+  field_job_title: Job title
+  field_acronym: Acronym
+  field_mission: Mission
+  field_functions: Functions
+  field_responsibilities: Responsibilities
+  field_employee_template: Occupation
+  field_department: Department
+  field_institution: Institution
+  field_education_level: Education level
+  field_complete_date: Complete date
+  field_ni: NI
+  field_race: Race
+  field_personal_address: Personal addres
+  field_relationships: Functional relationships with other positions
+  field_sociological_profile: Psychological profile
+  field_occupational_profile: Occupational profile
+  field_template_category: Ocupacional Category
+  field_job_salary: Job salary
+  field_salary_scale: Salary scale
+  field_birthday: Birthday
+  field_age: Agw
+  field_years: Years old
+  field_alias: Alias
+  field_department_parent: Subdepartment of
+  field_employee_education_level_ids: Education level
+  field_training_date: Training date
+  field_fixed_position: Fixed position
+  field_contract_type: Contract type
+  field_scale: Salary scale
+  field_salary: Salary
+  field_rga_template: Trained Place
+  field_telephone: Phone
+  field_email: email
+
+  #Messages
+  successfully_created: successfully created
+  successfully_updated: successfully updated
+  successfully_delete: successfully deleted
+  unsuccessfully_delete: could not be deleted
+  employee_dependent_error: employees associated with this or some subordinate area
+  message_not_exist_templates: No charges or occupations, you must create them
+  not_availability_template: No availability of the selected Position in the specified Department
+  templates_by_department_not_update: At least one position could not be updated for being occupied at this time, make movements of your employees and try later
+  will_be_deactivate_message: This employee will be discharged
+  successfully_deactivate: Employee successfully unsubscribed
+  workplan_responsible_label: "Responsable: "
+  value_not_identify: Unknown
+  will_be_deleted_message: will be removed, are you sure?
+  validates_presence_message: can not be blank
+
+

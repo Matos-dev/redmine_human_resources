@@ -1,0 +1,15 @@
+table.dashboard td {
+    text-align: center;
+    vertical-align: middle;
+    padding: 1px 1px 1px 1px;
+}
+
+table.dashboard {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+    background-color: transparent;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+

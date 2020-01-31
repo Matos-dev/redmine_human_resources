@@ -1,0 +1,43 @@
+<%= render(partial:  'headers/header_admin_section', locals: { tab: 'template_categories' }) %>
+
+<div class="contextual">
+  <%= link_to l(:label_employee_template_category_new), new_employee_template_category_path, class: 'icon icon-add'%>
+</div>
+<h2><%= l(:label_employee_template_categories) %></h2>
+<% if !@template_categories.empty? %>
+  <table class="list">
+    <thead>
+    <tr>
+      <th><%= l(:field_name) %></th>
+      <th><%= l(:field_alias) %></th>
+      <th><%= l(:field_description) %></th>
+      <th></th>
+      <th></th>
+    </tr>
+    </thead>
+
+    <% @template_categories.each do |category| %>
+      <tr>
+        <td> <%= category.name %></td>
+        <td> <%= category.alias %></td>
+        <td> <%= category.description %></td>
+        <td align="center"><%= link_to l(:button_edit),
+                                       edit_employee_template_category_path(category),
+                                       class: 'icon icon-edit' %>
+        </td>
+        <td align="center"><%= link_to l(:button_delete),
+                                       employee_template_category_path(category),
+                                       method: :delete,
+                                       class: 'icon icon-del',
+                                       data: {:confirm => (l(:will_be_deleted_message)).sub(/\(s\)/, category.name).to_s} %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  <p class="nodata"><%= l(:label_no_data) %></p>
+<% end %>
+
+
+
+

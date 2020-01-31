@@ -1,0 +1,20 @@
+---
+employee_education_level_001:
+ id: 1
+ name: University
+ alias: U
+ description: University Level
+
+employee_education_level_002:
+ id: 2
+ name: High School
+ alias: HS
+ description: High School
+
+employee_education_level_003:
+ id: 3
+ name: Other
+ alias: O
+ description: Other
+
+

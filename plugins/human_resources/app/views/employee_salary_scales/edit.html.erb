@@ -1,0 +1,8 @@
+<%= render(partial:  'headers/header_admin_section', locals: { :tab=>'employee_salary_scales' }) %>
+<h2><%= l(:label_employee_salary_scale_edit) %></h2>
+
+<%= labelled_form_for @salary_scale, html: {multipart: true, method: :put} do |f| %>
+  <%= error_messages_for @salary_scale %>
+  <%= render partial: 'form', locals: {f: f} %>
+  <%= submit_tag l(:button_save) %>
+<% end %>

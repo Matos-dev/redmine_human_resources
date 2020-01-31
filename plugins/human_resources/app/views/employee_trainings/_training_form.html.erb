@@ -1,0 +1,6 @@
+<%= error_messages_for @training %>
+
+<div id="main_o" class="box tabular">
+  <p><%= f.date_field :training_date, size: 12, required: true %><%#= calendar_for('employee_training_training_date') %> </p>
+  <p><%= f.text_area :description, required: true, cols: 60, rows: 10, class: 'wiki-edit' %></p>
+</div>

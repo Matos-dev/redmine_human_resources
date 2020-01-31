@@ -1,0 +1,9 @@
+<%= render(partial:  'headers/header_admin_section', locals: { :tab=>'template_categories' }) %>
+
+<h2><%= l(:label_employee_template_category_new) %></h2>
+
+<%= labelled_form_for @template_category, html: {method: :post} do |f| %>
+  <%= error_messages_for @template_category %>
+  <%= render partial:  'form', locals: {f: f} %>
+  <%= submit_tag l(:button_save) %>
+<% end %>

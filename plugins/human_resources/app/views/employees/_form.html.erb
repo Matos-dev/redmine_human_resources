@@ -1,0 +1,24 @@
+<div class="box tabular" id="person_data">
+  <div class="floating">
+    <p><%= f.file_field :image, accept: 'image/*' %> </p>
+    <p><%= f.text_field :name, required: true, size: 40 %></p>
+    <p><%= f.text_field :ni, required: true %></p>
+    <p><%= f.date_field :birthday, required: true %> </p>
+    <p><%= f.select :gender, Employee.employee_gender.invert { |a, _| a }, required: true %></p>
+    <p><%= f.text_field :race, required: true %></p>
+    <p><%= f.text_field :telephone %></p>
+    <p><%= f.text_field :email %></p>
+  </div>
+  <div class="floating">
+    <p><%= f.text_field :salary_card %></p>
+    <p><%= f.select :department_id, retrieve_departments.collect { |p| [p.name, p.id] }, required: true %></p>
+    <p><%= f.select :employee_template_id, retrieve_templates.collect { |p| [p.name, p.id] }, required: true %></p>
+    <p><%= f.date_field :job_init_date, size: 12, required: true %><%#= calendar_for('employee_job_init_date') %> </p>
+    <p><%= f.date_field :job_due_date, size: 12 %><%#= calendar_for('employee_job_due_date') %> </p>
+    <p><%= f.select :contract_type_id, retrieve_contract_types.collect { |p| [p.name, p.id] }, required: true, include_blank: true %></p>
+    <% unless @employee.active %>
+      <p><%= f.check_box :active %></p>
+    <% end %>
+  </div>
+  <p><%= f.text_area :address, cols: 60, rows: 10, label: :field_personal_address, class: 'wiki-edit' %><%= wikitoolbar_for 'employee_address' %></p>
+</div>

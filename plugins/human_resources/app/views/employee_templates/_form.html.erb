@@ -1,0 +1,31 @@
+<%= stylesheet_link_tag 'select2.min.css', plugin: 'human_resources' %>
+<%= javascript_include_tag 'select2.min.js', plugin: 'human_resources' %>
+<%#= stylesheet_link_tag 'profile.css', plugin: 'human_resources' %>
+<style>
+  .select2.select2-container{
+    width: 100% !important;
+  }
+</style>
+<div class="box tabular" id="employee_template_data">
+  <div class="splitcontentleft">
+    <p><%= f.text_field :name, required: true, size: 60 %></p>
+    <p><%= f.select :template_category_id, retrieve_template_categories.collect {|tc| [tc.name, tc.id]}, required: true %></p>
+    <p><%= f.select :employee_education_level_ids, retrieve_education_levels.collect {|column| [column.name, column.id]}, { :prompt => nil}, {:multiple => true, class: "chosen-select"} %></p>
+  </div>
+  <div class="splitcontentright">
+    <p><%= f.select :salary_scale_id, retrieve_salary_scales.collect {|tc| [tc.scale, tc.id]}, required: true %></p>
+    <p><%= f.check_box :rga_template %></p>
+  </div>
+  <p><%= f.text_area :mission, cols: 60, rows: 10, class: 'wiki-edit' %><%= wikitoolbar_for 'employee_template_mission' %></p>
+  <p><%= f.text_area :functions, cols: 60, rows: 10, class: 'wiki-edit' %><%= wikitoolbar_for 'employee_template_functions' %></p>
+  <p><%= f.text_area :responsibilities, cols: 60, rows: 10, class: 'wiki-edit' %><%= wikitoolbar_for 'employee_template_responsibilities' %></p>
+  <p><%= f.text_area :occupational_profile, cols: 60, rows: 10, class: 'wiki-edit' %><%= wikitoolbar_for 'employee_template_occupational_profile' %></p>
+  <p><%= f.text_area :sociological_profile, cols: 60, rows: 10, class: 'wiki-edit' %><%= wikitoolbar_for 'employee_template_sociological_profile' %></p>
+  <p><%= f.text_area :relationships, cols: 60, rows: 10, class: 'wiki-edit' %><%= wikitoolbar_for 'employee_template_relationships' %></p>
+</div>
+<script>
+    $(document).ready(function(){
+        $('.chosen-select').select2();
+    })
+</script>
+

@@ -1,0 +1,66 @@
+<!-- Bootstrap core CSS -->
+<%= stylesheet_link_tag '../dist/css/scoped-twbs', plugin: 'human_resources' %>
+<%= stylesheet_link_tag '../font-awesome/css/font-awesome.min', plugin: 'human_resources' %>
+<%= stylesheet_link_tag 'responsive', plugin: 'human_resources' %>
+
+<%= render(partial:  'headers/header_departments', locals: { tab: 'department_summary' }) %>
+
+<h2><%= l(:label_annex_templates) %></h2>
+
+<% if @departments.any? %>
+  <div class="autoscroll">
+    <table class="list">
+      <thead><tr>
+        <th><%=l(:label_description_annex)%></th>
+        <th><%=l(:field_template_category)%></th>
+        <th><%=l(:label_total_of_templates)%></th>
+        <th><%=l(:label_real_of_templates)%></th>
+        <th><%=l(:field_employee_education_level_ids)%></th>
+        <th><%=l(:field_salary_scale)%></th>
+      </tr></thead>
+      <tbody>
+      <% department_tree(@departments) do |department, level| %>
+        <tr class="<%= cycle("odd", "even") %> <%= department.css_classes %> <%= level > 0 ? "idnt idnt-#{level}" : nil %>">
+          <td class="name"><span><%= link_to department.name, department_path(department) %></span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <% if department.get_templates_of_department.any? %>
+          <% department.get_templates_of_department.each do |e_temp| %>
+              <tr>
+                <td class="name"><span><%= e_temp.employee_template.name %></span></td>
+                <td class="name"><span><%= e_temp.employee_template.employee_template_category.alias %></span></td>
+                <td class="name"><span><%= e_temp.total_templates %></span></td>
+                <td class="name"><span><%= e_temp.real_templates %></span></td>
+                <td class="name">
+                  <span><%= e_temp.employee_template.employee_education_level.collect {|column| column.alias} %></span>
+                </td>
+                <td class="name"><span><%= e_temp.employee_template.employee_salary_scale.scale %></span></td>
+              </tr>
+          <% end %>
+        <% end %>
+        <tr>
+          <td class="name" style="font-weight: bold">SUB TOTAL</td>
+          <td></td>
+          <td class="name"><span style="font-weight: bold"><%= department.get_templates_of_department.sum(:total_templates) %></span></td>
+          <td class="name"><span style="font-weight: bold"><%= department.get_templates_of_department.sum(:real_templates) %></span></td>
+          <td></td>
+          <td></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+<% else %>
+  <p class="nodata"><%= l(:label_no_data) %></p>
+<% end %>
+
+<% content_for :sidebar do %>
+  <%= render partial:  'department_tree' %>
+<% end %>
+<% other_formats_links do |f| %>
+  <%= f.link_to 'PDF', :url => {action: :department_summary}, target: '_blank' %>
+<% end %>

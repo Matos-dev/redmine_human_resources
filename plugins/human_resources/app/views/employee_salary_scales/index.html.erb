@@ -1,0 +1,40 @@
+<%= render(partial:  'headers/header_admin_section', locals: { tab: 'employee_salary_scales' }) %>
+
+<div class="contextual">
+  <%= link_to l(:label_employee_salary_scale_new), new_employee_salary_scale_path, class: 'icon icon-add'%>
+</div>
+<h2><%= l(:label_employee_salary_scales) %></h2>
+<% if !@salary_scales.empty? %>
+  <table class="list">
+    <thead>
+    <tr>
+      <th><%= l(:field_scale) %></th>
+      <th><%= l(:field_salary) %></th>
+      <th></th>
+      <th></th>
+    </tr>
+    </thead>
+
+    <% @salary_scales.each do |level| %>
+      <tr>
+        <td> <%= level.scale %></td>
+        <td> <%= level.salary %></td>
+        <td align="center"><%= link_to l(:button_edit),
+                                       edit_employee_salary_scale_path(level),
+                                       class: 'icon icon-edit' %>
+        </td>
+        <td align="center"><%= link_to l(:button_delete),
+                                       employee_salary_scale_path(level),
+                                       method: :delete,
+                                       class: 'icon icon-del',
+                                       data: {:confirm => (l(:will_be_deleted_message)).sub(/\(s\)/, level.scale).to_s} %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  <p class="nodata"><%= l(:label_no_data) %></p>
+<% end %>
+
+
+

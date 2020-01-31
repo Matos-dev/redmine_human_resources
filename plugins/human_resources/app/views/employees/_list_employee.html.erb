@@ -1,0 +1,83 @@
+<%= form_tag({}) do %>
+  <%= hidden_field_tag 'back_url', params[:back_url], :id => nil if params[:back_url].present? %>
+  <div class="autoscroll">
+    <table class="list issues <%= sort_css_classes %>">
+      <thead>
+      <tr>
+        <% query.inline_columns.each do |column| %>
+          <%= column_header(@query, column) %>
+        <% end %>
+        <th class="hide-when-print"></th>
+        <th class="hide-when-print"></th>
+        <th class="hide-when-print"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <% grouped_employee_list(employees, @query, @employee_count_by_group) do |employee, level, group_name, group_count, group_totals| -%>
+        <% if group_name %>
+          <% reset_cycle %>
+          <tr class="group open">
+            <td colspan="<%= query.inline_columns.size + 1 %>">
+              <span class="expander" onclick="toggleRowGroup(this);">&nbsp;</span>
+              <span class="name"><%= group_name %></span> <span class="count"><%= group_count %></span>
+              <span class="totals"><%= group_totals %></span>
+              <%= link_to_function("#{l(:button_collapse_all)}/#{l(:button_expand_all)}",
+                                   "toggleAllRowGroups(this)", class: 'toggle-all') %>
+            </td>
+          </tr>
+        <% end %>
+        <tr id="issue-<%= employee.id %>" class="hascontextmenu <%= cycle('odd', 'even') %> <%= employee.css_classes %> <%= level > 0 ? "idnt idnt-#{level}" : nil %>">
+          <%= raw query.inline_columns.map {|column| "<td class=\"#{column.css_classes}\">#{employee_column_content(column, employee)}</td>"}.join %>
+          <% if employee.active %>
+          <% if User.current.allowed_to?({controller: 'employees', action: 'deactivate_employee'}, nil, :global => true) %>
+            <td>
+              <div class="twbs">
+                <a class="btn btn-sm btn-default"
+                   href="/employee/<%= employee.id %>/deactivate_employee/" data-method="post"
+                   role="button" data-confirm="<%= (l(:will_be_deactivate_message)).sub(/\(s\)/, employee.name).to_s %>"
+                   title="<%= l(:label_archive_employee) %>">
+                  <span class="glyphicon glyphicon-ban-circle"></span>
+                </a>
+                <div style="clear:both;"></div>
+              </div>
+            </td>
+          <% end %>
+          <% end %>
+          <% if User.current.allowed_to?({controller: 'employees', action: 'edit'}, nil, :global => true) %>
+            <td>
+              <div class="twbs">
+                <a class="btn btn-sm btn-default"
+                   href="/employees/<%= employee.id %>/edit" role="button"
+                   title="<%= l(:update_button_label) %>">
+                  <span class="glyphicon glyphicon-edit"></span>
+                </a>
+                <div style="clear:both;"></div>
+              </div>
+            </td>
+          <% end %>
+          <% if User.current.allowed_to?({controller: 'employees', action: 'destroy'}, nil, :global => true) %>
+            <td>
+              <div class="twbs">
+                <a class="btn btn-sm btn-default"
+                   href="/employees/<%= employee.id %>/" data-method="delete"
+                   role="button" data-confirm="<%= (l(:will_be_deleted_message)).sub(/\(s\)/, employee.name).to_s %>"
+                   title="<%= l(:delete_button_label) %>">
+                  <span class="glyphicon glyphicon-trash"></span>
+                </a>
+                <div style="clear:both;"></div>
+              </div>
+            </td>
+          <% end %>
+        </tr>
+        <% @query.block_columns.each do |column| %>
+          <% if (text = employee_column_content(column, employee)) && text.present? -%>
+            <tr class="<%= current_cycle %>">
+              <td colspan="<%= @query.inline_columns.size + 1 %>" class="<%= column.css_classes %>"><%= text %></td>
+            </tr>
+          <% end -%>
+        <% end -%>
+      <% end -%>
+      </tbody>
+    </table>
+  </div>
+<% end %>

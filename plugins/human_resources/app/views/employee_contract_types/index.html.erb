@@ -1,0 +1,37 @@
+<%= render(partial:  'headers/header_admin_section', locals: { tab: 'employee_contract_type' }) %>
+
+<div class="contextual">
+  <%= link_to l(:label_employee_contract_type_new), new_employee_contract_type_path, class: 'icon icon-add'%>
+</div>
+<h2><%= l(:label_employee_contract_types) %></h2>
+<% if !@contract_types.empty? %>
+  <table class="list">
+    <thead>
+    <tr>
+      <th><%= l(:field_name) %></th>
+      <th><%= l(:field_description) %></th>
+      <th></th>
+      <th></th>
+    </tr>
+    </thead>
+
+    <% @contract_types.each do |ct| %>
+      <tr>
+        <td> <%= ct.name %></td>
+        <td> <%= ct.description %></td>
+        <td align="center"><%= link_to l(:button_edit),
+                                       edit_employee_contract_type_path(ct),
+                                       class: 'icon icon-edit' %>
+        </td>
+        <td align="center"><%= link_to l(:button_delete),
+                                       employee_contract_type_path(ct),
+                                       method: :delete,
+                                       class: 'icon icon-del',
+                                       data: {:confirm => (l(:will_be_deleted_message)).sub(/\(s\)/, ct.name).to_s} %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  <p class="nodata"><%= l(:label_no_data) %></p>
+<% end %>

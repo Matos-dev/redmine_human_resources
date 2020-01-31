@@ -1,0 +1,24 @@
+<%#= build_html_help %>
+
+<div class="contextual">
+  <% if User.current.allowed_to?({controller: 'employees', action: 'edit'}, nil, :global => true) %>
+    <td align="right"><%= link_to l(:button_edit), edit_employee_path(@employee), method: :get, class: 'icon icon-edit' %> </td>
+  <% end %>
+  <% if User.current.allowed_to?({controller: 'employees', action: 'destroy'}, nil, :global => true) %>
+    <td align="right"><%= link_to l(:button_delete), employee_path(@employee), method: :delete, class: 'icon icon-del', data: {:confirm => (l(:will_be_deleted_message)).sub(/\(s\)/, @employee.name).to_s} %> </td>
+  <% end %>
+</div>
+
+<style type="text/css">
+  #plugin_help {
+    width: 79.5em !important;
+    height: 40em !important;
+  }
+</style>
+
+<script type="text/javascript">
+    $('#helpIcon').click(function () {
+        showModal('plugin_help', '60em');
+        return false;
+    });
+</script>

@@ -1,0 +1,7 @@
+<%= render(partial:  'headers/header_employees', locals: { :tab=>'employees' }) %>
+<h2><%= l(:label_employee_new) %></h2>
+<%= labelled_form_for @employee, html: {method: :post} do |f| %>
+  <%= error_messages_for 'employee' %>
+  <%= render partial:  'form', locals: {f: f} %>
+  <%= submit_tag l(:button_save) %>
+<% end %>

@@ -1,0 +1,55 @@
+<h3><%#= "#{l(:label_invoice_status)}#{' - ' + @invoice.stakeholder_entry.name.strip if @invoice && @invoice.stakeholder_entry}"  %></h3>
+
+<div class="twbs">
+  <div class="col-md-12 bg-info" style="height: 40px;">
+    <div class="col-md-10" style="margin-top: 5%;">
+      <strong><%= l(:label_active_employees) %></strong>
+    </div>
+    <div class="col-md-2" style="margin-top: 5%;">
+      <strong><%= employees_actives %></strong>
+    </div>
+  </div>
+  <div class="col-md-12 bg-danger" style="height: 40px;">
+    <div class="col-md-10" style="margin-top: 5%;">
+      <strong><%= l(:label_inactive_employees) %></strong>
+    </div>
+    <div class="col-md-2" style="margin-top: 5%;">
+      <strong><%= employees_inactives %></strong>
+    </div>
+  </div>
+
+  <!--
+    <tr>
+      <th>
+        <span class="tag-label-color invoice-status estimate" >
+          <span>Type 2</span>
+        </span>
+      </th>
+      <td class="sum">123</td>
+    </tr>
+    <tr>
+      <th>
+      <span class="tag-label-color invoice-status sent" >
+        <span>Type 3</span>
+      </span>
+      </th>
+      <td class="sum">4</td>
+    </tr>
+    <tr>
+      <th>
+      <span class="tag-label-color invoice-status paid" >
+        <span>Type 4</span>
+      </span>
+      </th>
+      <td class="sum">20</td>
+    </tr>
+    <tr>
+      <th>
+      <span class="tag-label-color invoice-status canceled" >
+        <span>Type 5</span>
+      </span>
+      </th>
+      <td class="sum">0</td>
+    </tr>-->
+  <div style="clear:both;"></div>
+</div>

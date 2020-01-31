@@ -1,0 +1,142 @@
+# Espanish strings go here for Rails i18n
+es:
+  # Permissions
+  permission_view_employees_permission_label: Ver empleados
+  permission_edit_employees_permission_label: Editar empleados
+  permission_destroy_employees_permission_label: Eliminar empleados
+  permission_deactivate_employees_permission_label: Dar baja a empleados
+  permission_view_departments_permission_label: Ver departamentos
+  permission_edit_departments_permission_label: Editar departamentos
+  permission_destroy_departments_permission_label: Eliminar departamentos
+  permission_managed_department_templates_permission_label: Gestionar plantilla de los departamentos
+  permission_view_templates_permission_label: Ver Cargos/Ocupaciones
+  permission_edit_templates_permission_label: Editar Cargos/Ocupaciones
+  permission_destroy_templates_permission_label: Eliminar Cargos/Ocupaciones
+
+  project_module_human_resources_module_label: Gestión de los recursos humanos.
+  permission_human_resources_permissions_label: Gestión de los recursos humanos a nivel de organización.
+  permission_project_humans_resources_permissions_label: Plan actividades a nivel de proyecto.
+
+  #Labels
+  admin_employee_template_categories_label: Recursos Humanos
+  organization_employee_submenu: Empleados
+  label_employee_new: Nuevo Empleado
+  label_employee_edit: Editar Empleado
+  label_employee_avatar: Cargar Foto
+  label_speciality: Especialidad
+  label_employee_file: Expediente del Empleado
+  label_work_experience: Experiencia de Trabajo
+  label_employee: Empleado
+  label_department: Área/Departamento
+  label_departments: Áreas/Departamentos
+  label_department_new: Nuevo Área/Departamento
+  label_department_edit: Editar Área/Departamento
+  label_employee_template: Cargo/Ocupación
+  label_employee_templates: Cargos/Ocupaciones
+  label_employee_template_new: Nuevo Cargo/Ocupación
+  label_employee_template_edit: Editar Cargo/Ocupación
+  label_gender_male: M
+  label_gender_female: F
+  label_employee_educational: Información Educacional
+  label_disease: Enfermedad
+  label_diseases: Enfermedades
+  label_active_employees: Activos
+  label_inactive_employees: Inactivos
+  label_sumary_employees: Resumen de Empleados
+  label_womans: Mujeres
+  label_man: Hombres
+  label_salary_key: Pago Adicional
+  label_salary_keys: Pagos Adicionales
+  label_salary_and_aditional_pay: Salario y Pagos Adicionales
+  label_no_aditional_pay: No existen pagos adicionales
+  label_training: Entrenamientos
+  label_template_by_department: Gestionar Cargos del Departamento
+  label_employee_template_categories: Categorías de los Cargos/Ocupaciones
+  label_employee_template_category_new: Nueva categoría para Cargos/Ocupaciones
+  label_employee_template_category_edit: Editar categoría de Cargo/Ocupación
+  label_employee_education_levels: Niveles educacionales
+  label_employee_education_level_new: Nuevo nivel educacional
+  label_employee_education_level_edit: Editar nivel educacional
+  label_annex_templates: Anexo Plantilla de Cargos
+  label_annex: Anexo
+  label_description_annex: Departamentos/Cargos
+  label_total_of_templates: Cantidad de Cargos
+  label_real_of_templates: Real de Cargos Ocupados
+  label_employee_general_information: Información General
+  label_employee_list: Listado de Empleados
+  label_employee_contract_types: Tipos de Contratación
+  label_employee_contract_type_new: Nuevo tipo de contratación
+  label_contract_type: Tipo de contratación
+  label_employee_contract_type_edit: Editar tipo de contratación
+  label_employee_salary_scale_new: Nueva escala salarial
+  label_employee_salary_scale_edit: Editar escala salarial
+  label_employee_salary_scales: Escalas Salariales
+  label_archive_employee: Dar baja empleado
+  update_button_label: Editar
+  delete_button_label: Eliminar
+  general_information_label: Información General
+  department_occupations: Ocupaciones del Departamento
+
+  #Fields
+  field_employee_name: Nombre
+  field_employee_email: Correo
+  field_employee_telephone: Teléfono
+  field_gender: Género
+  field_salary_card: Cuenta Bancaria
+  field_job_init_date: Fecha Contratación
+  field_job_due_date: Fecha Fin de Contrato
+  field_avatar: Foto
+  field_from_date: Desde
+  field_to_date: Hasta
+  field_previous_company_name: Empresa
+  field_job_title: Puesto de Trabajo
+  field_acronym: Acrónimo
+  field_mission: Misión
+  field_functions: Funciones
+  field_responsibilities: Responsabilidades
+  field_employee_template: Cargo u Ocupación
+  field_department: Departamento/Área
+  field_institution: Institución
+  field_education_level: Nivel Educacional
+  field_complete_date: Fecha de Graduado
+  field_ni: NI
+  field_race: Raza
+  field_personal_address: Dirección Particular
+  field_relationships: Relaciones funcionales con otros puestos
+  field_sociological_profile: Perfil Psicológico
+  field_occupational_profile: Perfil Ocupacional
+  field_template_category: Categoría Ocupacional
+  field_job_salary: Salario básico
+  field_salary_scale: Grupo Escala
+  field_birthday: Fecha de Nacimiento
+  field_age: Edad
+  field_years: Años
+  field_alias: Alias
+  field_department_parent: Subdepartamento de
+  field_employee_education_level_ids: Nivel de preparación
+  field_training_date: Fecha
+  field_fixed_position: Puesto fijo
+  field_contract_type: Tipo de contratación
+  field_scale: Escala salarial
+  field_salary: Salario
+  field_rga_template: Plaza para Adiestrado
+  field_telephone: Teléfono
+  field_email: Correo Electrónico
+
+  #Messages
+  successfully_created: creado satisfactoriamente
+  successfully_updated: actualizado satisfactoriamente
+  successfully_delete: eliminado satisfactoriamente
+  unsuccessfully_delete: no se pudo eliminar
+  employee_dependent_error: exiten empleados asociados a esta o a alguna área subordinada
+  message_not_exist_templates: No existen Cargos u Ocupaciones, debe crearlos
+  not_availability_template: No existe disponibilidad del Cargo seleccionado en el Departamento especificado
+  templates_by_department_not_update: Al menos un cargo no pudo ser actualizado por estar ocupado en estos momentos, realice movimientos de sus empleados e intente más tarde
+  will_be_deactivate_message: Este empleado será dado de baja
+  successfully_deactivate: Empleado dado de baja satisfactoriamente
+  workplan_responsible_label: "Responsable: "
+  value_not_identify: Desconocido
+  will_be_deleted_message: será eliminado, está seguro?
+  validates_presence_message: no puede estar en blanco
+
+

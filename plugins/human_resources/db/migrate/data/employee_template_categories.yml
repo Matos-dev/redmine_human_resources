@@ -1,0 +1,24 @@
+---
+employee_template_category_001:
+ id: 1
+ name: Category 1
+ alias: C1
+ description: Category 1
+
+employee_template_category_002:
+ id: 2
+ name: Category 2
+ alias: C2
+ description: Category 2
+
+employee_template_category_003:
+ id: 3
+ name: Category 3
+ alias: C3
+ description: Category 3
+
+employee_template_category_004:
+ id: 4
+ name: Category 4
+ alias: C4
+ description: Category 4

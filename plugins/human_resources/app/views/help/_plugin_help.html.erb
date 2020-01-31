@@ -1,0 +1,21 @@
+<%= build_html_help %>
+
+<div class="contextual">
+  <td align="right"><%= link_to l(:label_help),
+                                '#', {id: 'helpIcon',
+                                      class:  'icon icon-help'} %> </td>
+</div>
+
+<style type="text/css">
+  #plugin_help {
+    width: 79.5em !important;
+    height: 40em !important;
+  }
+</style>
+
+<script type="text/javascript">
+    $('#helpIcon').click(function () {
+        showModal('plugin_help', '60em');
+        return false;
+    });
+</script>

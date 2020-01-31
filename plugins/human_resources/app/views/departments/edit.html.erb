@@ -1,0 +1,7 @@
+<%= render(partial:  'headers/header_departments', locals: { :tab=>'departments' }) %>
+<h2><%= l(:label_department_edit) %></h2>
+<%= labelled_form_for @department, html: {multipart: true, method: :put} do |f| %>
+  <%= error_messages_for 'department' %>
+  <%= render partial:  'form', locals: {f: f} %>
+  <%= submit_tag l(:button_save) %>
+<% end %>

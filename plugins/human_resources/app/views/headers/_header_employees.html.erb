@@ -1,0 +1,27 @@
+<div class="tabs">
+  <ul>
+    <% if User.current.allowed_to?({controller: :employees, action: 'index'}, nil, global: true) %>
+      <li>
+        <%= link_to l(:organization_employee_submenu),
+                    {controller: :employees, action: 'index'},
+                    class: ("employees" != local_assigns[:tab] ? nil : 'selected')
+        %>
+      </li>
+    <% end %>
+  </ul>
+
+  <div class="tabs-buttons" style="display:none;">
+    <button class="tab-left" onclick="moveTabLeft(this);"></button>
+    <button class="tab-right" onclick="moveTabRight(this);"></button>
+  </div>
+  <script>
+      $(document).ready(displayTabsButtons);
+      $(window).resize(displayTabsButtons);
+  </script>
+
+</div>
+
+
+
+
+

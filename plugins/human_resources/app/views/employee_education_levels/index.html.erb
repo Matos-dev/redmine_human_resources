@@ -1,0 +1,43 @@
+<%= render(partial:  'headers/header_admin_section', locals: { tab: 'employee_education_levels' }) %>
+
+<div class="contextual">
+  <%= link_to l(:label_employee_education_level_new), new_employee_education_level_path, class: 'icon icon-add'%>
+</div>
+<h2><%= l(:label_employee_education_levels) %></h2>
+<% if !@education_levels.empty? %>
+  <table class="list">
+    <thead>
+    <tr>
+      <th><%= l(:field_name) %></th>
+      <th><%= l(:field_alias) %></th>
+      <th><%= l(:field_description) %></th>      
+      <th></th>
+      <th></th>
+    </tr>
+    </thead>
+
+    <% @education_levels.each do |level| %>
+      <tr>
+        <td> <%= level.name %></td>
+        <td> <%= level.alias %></td>
+        <td> <%= level.description %></td>
+        <td align="center"><%= link_to l(:button_edit),
+                                       edit_employee_education_level_path(level),
+                                       class: 'icon icon-edit' %>
+        </td>
+        <td align="center"><%= link_to l(:button_delete),
+                                       employee_education_level_path(level),
+                                       method: :delete,
+                                       class: 'icon icon-del',
+                                       data: {:confirm => (l(:will_be_deleted_message)).sub(/\(s\)/, level.name).to_s} %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  <p class="nodata"><%= l(:label_no_data) %></p>
+<% end %>
+
+
+
+

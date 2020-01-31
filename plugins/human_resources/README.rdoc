@@ -1,0 +1,15 @@
+= human_resources
+
+This is a redmine plugins for management human resources. Current Version of Redmine >= 4.0
+
+Installation
+- Read the guide available in https://www.redmine.org/projects/redmine/wiki/Plugins for install Redmine plugins
+
+Configure the plugin
+- Run redmine and sign in as admin
+- Go to 'Administration/Roles and permissions' and configure the permissions for each Role (Permissions-Human Resources Management)
+- Go to 'Administration/Human Resources' and configure 'Template categories', 'Educational levels', 'Type of contracts', 'Salary scales'
+- Create the occupations in Departments (Tab Occupations)
+- Create the departments in Departments (Tab Departments), can create a department within another department
+- Click on the department name to view a department, click on 'Department occupations' and set the number of department posts
+- Click on Employees and register yours employees

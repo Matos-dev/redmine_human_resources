@@ -1,0 +1,150 @@
+<!-- Bootstrap core CSS -->
+<%= stylesheet_link_tag '../dist/css/scoped-twbs', plugin: 'human_resources' %>
+<%= stylesheet_link_tag '../font-awesome/css/font-awesome.min', plugin: 'human_resources' %>
+<%= stylesheet_link_tag 'responsive', plugin: 'human_resources' %>
+
+<%= render(partial:  'headers/header_departments', locals: { tab: 'employee_templates' }) %>
+<% unless @employee_template.nil? %>
+
+  <%= render partial:  'action_menu' %>
+
+  <h2>
+    <%= l(:label_employee_template) %>: <%= @employee_template.name %>
+  </h2>
+
+  <div class="twbs">
+
+    <!--general-->
+    <div class="col-md-1 item-list">
+      <div class="panel panel-info text-center lab-panel">
+        <div class="panel-heading lab-panel-heading lab-retrieve-panel-heading">
+          <h4 class="lab-retrieve-icon" title="<%= l(:general_information_label) %>">
+            <i class="fa fa-google fa-2x"></i>
+          </h4>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-11 item-list">
+      <div class="panel panel-info text-center lab-panel">
+
+        <div class="lab-panel-body">
+          <div class="lab-item-panel">
+            <p>
+              <strong><%= l(:field_employee_name) %>:</strong>
+              <span><%= h(@employee_template.name) %>
+                </span>
+            </p>
+          </div>
+          <div class="lab-item-panel">
+            <p>
+              <strong><%= l(:field_template_category) %>:</strong>
+              <span><%= h (@employee_template.employee_template_category.name) %>
+                </span>
+            </p>
+          </div>
+
+          <div class="lab-item-panel">
+            <p>
+              <strong><%= l(:field_salary_scale) %>:</strong>
+              <span><%= h (@employee_template.employee_salary_scale.scale) %>
+                </span>
+            </p>
+          </div>
+          <div class="lab-item-panel">
+            <p>
+              <strong><%= l(:field_employee_education_level_ids) %>:</strong>
+              <span><%= h (@employee_template.employee_education_level.collect { |e_lv| e_lv.alias }) %>
+                </span>
+            </p>
+          </div>
+          <div class="lab-item-panel">
+            <p>
+              <strong><%= l(:field_job_salary) %>:</strong>
+              <span><%= h (@employee_template.employee_salary_scale.salary) %>
+                </span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- learned lessons -->
+    <div class="col-md-1 item-list">
+      <div class="panel panel-info text-center lab-panel">
+        <div class="panel-heading lab-panel-heading lab-retrieve-panel-heading">
+          <h4 class="lab-retrieve-icon" title="<%= l(:label_details) %>">
+            <i class="fa fa-book fa-2x"></i>
+          </h4>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-11 item-list">
+      <div class="panel panel-info text-center lab-panel">
+        <div class="lab-panel-body">
+
+
+          <div class="lab-item-panel">
+            <p>
+              <strong><%= l(:field_mission) %>:</strong>
+              <span><%= (@employee_template.mission == "") ?
+                            l(:value_not_identify) : @employee_template.mission %></span>
+            </p>
+          </div>
+          <div class="lab-item-panel">
+            <p>
+              <strong><%= l(:field_functions) %>:</strong>
+              <span><%= (@employee_template.functions == "") ?
+                            l(:value_not_identify) : @employee_template.functions %></span>
+            </p>
+          </div>
+          <div class="lab-item-panel">
+            <p>
+              <strong><%= l(:field_responsibilities) %>:</strong>
+              <span><%= (@employee_template.responsibilities == "") ?
+                            l(:value_not_identify) : @employee_template.responsibilities %></span>
+            </p>
+          </div>
+          <div class="lab-item-panel">
+            <p>
+              <strong><%= l(:field_occupational_profile) %>:</strong>
+              <span><%= (@employee_template.occupational_profile == "") ?
+                            l(:value_not_identify) : @employee_template.occupational_profile %></span>
+            </p>
+          </div>
+          <div class="lab-item-panel">
+            <p>
+              <strong><%= l(:field_sociological_profile) %>:</strong>
+              <span><%= (@employee_template.sociological_profile == "") ?
+                            l(:value_not_identify) : @employee_template.sociological_profile %></span>
+            </p>
+          </div>
+          <div class="lab-item-panel">
+            <p>
+              <strong><%= l(:field_relationships) %>:</strong>
+              <span><%= (@employee_template.relationships == "") ?
+                            l(:value_not_identify) : @employee_template.relationships %></span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="clear:both;"></div>
+  </div>
+
+<!--  <fieldset id="filters" class="filters collapsible collapsed">
+    <legend onclick="toggleFieldset(this);"><%#= l(:label_changes_details) %></legend>
+    <div style="display: none">
+      <%# if @journals.present? %>
+        <div id="history">
+          <h3><%#= l(:label_history) %></h3>
+          <%#= render partial:  'history', :locals => {:journals => @journals} %>
+        </div>
+      <%# end %>
+    </div>
+  </fieldset>-->
+
+<% end %>

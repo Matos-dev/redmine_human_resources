@@ -1,0 +1,13 @@
+<%= error_messages_for @educational_data %>
+
+<div id="main_o" class="box tabular">
+  <p>
+    <%= f.text_field :institution, required: true %>
+  </p>
+  <p>
+    <%= f.text_field :speciality, required: true %>
+  </p>
+  <p><%= f.date_field :start_date, size: 12, required: true %><%#= calendar_for('employee_educational_start_date') %> </p>
+  <p><%= f.date_field :complete_date, size: 12 %><%#= calendar_for('employee_educational_complete_date') %> </p>
+  <p><%= f.select :education_level_id, retrieve_education_levels.collect {|ed| [ed.name, ed.id]}, required: true %></p>
+</div>

@@ -1,0 +1,10 @@
+<div class = "box tabular" id="department_data">
+  <p><%= f.text_field :name, required: true, size: 60 %></p>
+  <p><%= f.check_box :active %></p>
+  <% unless @department.allowed_parents.compact.empty? %>
+    <p><%= label(:department, :parent_id, l(:field_department_parent)) %><%= parent_department_select_tag(@department) %></p>
+  <% end %>
+  <p><%= f.text_area :description, :cols => 60, :rows => 10, :class => 'wiki-edit' %><%= wikitoolbar_for 'department_description' %></p>
+</div>
+
+

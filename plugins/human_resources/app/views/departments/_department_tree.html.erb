@@ -1,0 +1,28 @@
+<!-- Bootstrap core CSS -->
+<%= stylesheet_link_tag '../dist/css/scoped-twbs', plugin: 'human_resources' %>
+<%= stylesheet_link_tag '../font-awesome/css/font-awesome.min', plugin: 'human_resources' %>
+<%= stylesheet_link_tag 'responsive', plugin: 'human_resources' %>
+
+<%#= render(partial:  'headers/header_departments', locals: { :tab=>'departments' }) %>
+
+<% if @departments.any? %>
+  <div class="autoscroll">
+    <table class="list">
+      <thead><tr>
+        <th><%=l(:label_department)%></th>
+        <th></th>
+      </tr></thead>
+      <tbody>
+      <% department_tree(@departments) do |department, level| %>
+        <tr class="<%= cycle("odd", "even") %> <%= department.css_classes %> <%= level > 0 ? "idnt idnt-#{level}" : nil %>">
+          <td class="name"><span><%= link_to department.name, {controller: :departments, action: :department_summary, department_id: department
+          .id} %></span></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+<% else %>
+  <p class="nodata"><%= l(:label_no_data) %></p>
+<% end %>
+

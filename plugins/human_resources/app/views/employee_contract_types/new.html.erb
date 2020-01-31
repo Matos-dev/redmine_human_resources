@@ -1,0 +1,9 @@
+<%= render(partial:  'headers/header_admin_section', locals: { :tab=>'employee_contract_type' }) %>
+
+<h2><%= l(:label_employee_contract_type_new) %></h2>
+
+<%= labelled_form_for @contract_type, html: {method: :post} do |f| %>
+  <%= error_messages_for @contract_type %>
+  <%= render partial:  'form', locals: {f: f} %>
+  <%= submit_tag l(:button_save) %>
+<% end %>

@@ -1,0 +1,35 @@
+<div class="tabs">
+  <ul>
+    <% if User.current.allowed_to?({controller: 'departments', action: 'index'}, nil, :global => true) %>
+      <li>
+        <%= link_to l(:label_departments),
+                    {controller: 'departments', action: 'index'},
+                    class:  ('departments' != local_assigns[:tab] ? nil : 'selected')
+        %>
+      </li>
+    <% end %>
+    <% if User.current.allowed_to?({controller: 'departments', action: 'index'}, nil, :global => true) %>
+      <li>
+        <%= link_to l(:label_employee_templates),
+                    {controller: :employee_templates, action: 'index'},
+                    class: ("employee_templates" != local_assigns[:tab] ? nil : 'selected')
+        %>
+      </li>
+    <% end %>
+      <li>
+        <%= link_to l(:label_annex),
+                    {controller:  'departments', action: 'department_summary'},
+                    class:  ('department_summary' != local_assigns[:tab] ? nil : 'selected')
+        %>
+      </li>
+  </ul>
+
+  <div class="tabs-buttons" style="display:none;">
+    <button class="tab-left" onclick="moveTabLeft(this);"></button>
+    <button class="tab-right" onclick="moveTabRight(this);"></button>
+  </div>
+  <script>
+      $(document).ready(displayTabsButtons);
+      $(window).resize(displayTabsButtons);
+  </script>
+</div>

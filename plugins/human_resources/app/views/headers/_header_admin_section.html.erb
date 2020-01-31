@@ -1,0 +1,43 @@
+<div class="tabs">
+  <ul>
+    <% if User.current.allowed_to?({controller: 'employee_template_categories', action: 'index'}, nil, :global => true) %>
+      <li>
+        <%= link_to l(:label_employee_template_categories),
+                    {controller: 'employee_template_categories', action: 'index'},
+                    class: ('template_categories' != local_assigns[:tab] ? nil : 'selected') %>
+      </li>
+    <% end %>
+    <% if User.current.allowed_to?({controller: 'employee_template_categories', action: 'index'}, nil, :global => true) %>
+      <li>
+        <%= link_to l(:label_employee_education_levels),
+                    {controller: :employee_education_levels, action: 'index'},
+                    class: ("employee_education_levels" != local_assigns[:tab] ? nil : 'selected')
+        %>
+      </li>
+    <% end %>
+    <% if User.current.allowed_to?({controller: 'employee_contract_type', action: 'index'}, nil, :global => true) %>
+      <li>
+        <%= link_to l(:label_employee_contract_types),
+                    {controller: :employee_contract_types, action: 'index'},
+                    class: ("employee_contract_type" != local_assigns[:tab] ? nil : 'selected')
+        %>
+      </li>
+    <% end %>
+    <% if User.current.allowed_to?({controller: 'employee_salary_scales', action: 'index'}, nil, :global => true) %>
+      <li>
+        <%= link_to l(:label_employee_salary_scales),
+                    {controller: 'employee_salary_scales', action: 'index'},
+                    class: ('employee_salary_scales' != local_assigns[:tab] ? nil : 'selected') %>
+      </li>
+    <% end %>
+  </ul>
+
+  <div class="tabs-buttons" style="display:none;">
+    <button class="tab-left" onclick="moveTabLeft(this);"></button>
+    <button class="tab-right" onclick="moveTabRight(this);"></button>
+  </div>
+  <script>
+      $(document).ready(displayTabsButtons);
+      $(window).resize(displayTabsButtons);
+  </script>
+</div>
