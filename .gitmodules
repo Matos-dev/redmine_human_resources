@@ -1,0 +1,3 @@
+[submodule "plugins/human_resources"]
+	path = plugins/human_resources
+	url = git@github.com:Matos-dev/human_resources.git
