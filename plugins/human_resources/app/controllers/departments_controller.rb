@@ -96,7 +96,7 @@ class DepartmentsController < ApplicationController
                             encoding: 'utf8',
                             locals: { departments: @departments, date: date })
     pdf = WickedPdf.new.pdf_from_string(html, orientation: 'Landscape')
-    send_data(pdf, filename: l(:label_annex_14) + '.pdf', disposition: 'inline',
+    send_data(pdf, filename: l(:label_annex) + '.pdf', disposition: 'inline',
               margin: { left: 200, right: 0 })
   end
 
